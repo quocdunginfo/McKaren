@@ -17,7 +17,13 @@ namespace McKaren
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { controller = "McKaren.Admin",  action = "Index", id = UrlParameter.Optional },
+                new { controller = "Home",  action = "Index", id = UrlParameter.Optional },
+                new string[] { "McKaren.Admin.Controllers" }
+            );
+            context.MapRoute(
+                "GoogleAuthen_default",
+                "Auth",
+                new { controller = "Account", action = "Auth", id = UrlParameter.Optional },
                 new string[] { "McKaren.Admin.Controllers" }
             );
         }

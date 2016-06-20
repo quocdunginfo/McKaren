@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Login";
+    var ggId = McKaren.Admin.Authen.GoogleAuthenticateHelper.GetDefaultGoogleId();
+    var authenProvider = new McKaren.Admin.Authen.GoogleAuthenticateHelper(ggId.ClientId, ggId.ClientSecret);
+}
+
+<a href="@authenProvider.GetAuthenUrl(Url.Content("~/Auth", true))">Login using Google</a>
+
