@@ -1,4 +1,5 @@
 ﻿using McKaren.Core;
+using McKaren.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,14 +33,18 @@ namespace McKaren
                     {
                         //let us take out the username now                
                         string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-
-                        CustomPrincipal newUser = new CustomPrincipal(username);
-                        newUser.FirstName = "Nguyen Quoc Dung";
-                        newUser.roles = new List<string> { "Admin", "Accountant" };
-
-                        System.Web.HttpContext.Current.User = newUser;
+                        using (var db = new McKarenDb())
+                        {
+                            var user = db.Users.FirstOrDefault(x => x.UserName.ToLower().Equals(username.ToLower()));
+                            if (user != null)
+                            {
+                                CustomPrincipal newUser = new CustomPrincipal(user.UserName);
+                                newUser.roles = user.Roles.Select(x => x.Id).ToList();
+                                System.Web.HttpContext.Current.User = newUser;
+                            }
+                        }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         //went wrong
                     }

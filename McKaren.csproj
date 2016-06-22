@@ -234,13 +234,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\McKaren.Core\McKaren.Core.csproj">
+    <ProjectReference Include="McKaren.Core\McKaren.Core.csproj">
       <Project>{f7845829-80cd-4dae-afa1-7da3a12f38e0}</Project>
       <Name>McKaren.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="McKaren.Db\McKaren.Db.csproj">
+      <Project>{c84db83b-ede9-4b07-8b33-b2ac6c98da16}</Project>
+      <Name>McKaren.Db</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -261,7 +267,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52584</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53022/</IISUrl>
+          <IISUrl>http://localhost:53023/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

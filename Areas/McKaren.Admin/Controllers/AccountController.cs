@@ -1,5 +1,7 @@
 ﻿using McKaren.Admin.Authen;
 using McKaren.Core;
+using McKaren.Db;
+using McKaren.Db.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +52,19 @@ namespace McKaren.Admin.Controllers
             string encTicket = FormsAuthentication.Encrypt(authTicket);
             HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
             Response.Cookies.Add(faCookie);
+            using (var db = new McKarenDb())
+            {
+                db.Users.Add(new User
+                {
+                    Id = Guid.NewGuid.ToString().ToUpper(),
+                    UserName = re.Email,
+                    Active = false,
+                    AuthProvider = "Google",
+                    Email = re.Email,
+                    Password = string.Empty
+                });
+                db.SaveChanges();
+            }
 
             return RedirectToAction("Index", "Home");
         }

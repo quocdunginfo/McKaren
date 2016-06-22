@@ -42,6 +42,9 @@
     <Reference Include="McKaren.Core">
       <HintPath>..\..\bin\McKaren.Core.dll</HintPath>
     </Reference>
+    <Reference Include="McKaren.Db">
+      <HintPath>..\..\bin\McKaren.Db.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
